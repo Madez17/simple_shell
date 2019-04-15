@@ -12,7 +12,7 @@ char *_prompt(char *buffer)
 	ssize_t characters;
 	size_t sizebuf = 120;
 
-	write(1, "#cisfun$ ", 9);
+	/*write(1, "#cisfun$ ", 9);*/
 	characters = getline(&buffer, &sizebuf, stdin);
 	if (characters == EOF)
 	{
