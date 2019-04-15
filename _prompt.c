@@ -16,7 +16,7 @@ char *_prompt(char *buffer)
 	characters = getline(&buffer, &sizebuf, stdin);
 	if (characters == EOF)
 	{
-		write(1, "\n", 1);
+		/*write(1, "\n", 1);*/
 		free(buffer);
 		exit(0);
 	}
