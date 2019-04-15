@@ -1,0 +1,52 @@
+.\" This is the manpage of _simple_Shell
+.TH _Shell "15/04/19" "VI" "_simple_shell man page"
+ 
+.SH NAME
+_Simple_shell
+ 
+.SH SYNOPSIS
+_Simple_shell [Option] [command | File]
+.SH COPYRIGHT
+_Simple_shell is copyright (c)
+.SH DESCRIPTION
+
+
+The Simple shell, a new version(A command-line interface is an operating system shell that uses alphanumeric characters typed on a keyboard to provide instructions and data to the operating system, interactively).
+
+This new version seeks to familiarize the user with the new commands and their call syntax, providing certain advantages to screen readers.
+
+AVAILABILITY
+simple_shell  is  available  from  the following link: ---------
+
+OPTIONS
+
+All  of  the  single-character  shell  options  documented  in the description of the set builtin command can be used as options when the shell is invoked.  In addition, bash interprets the following options when it is invoked:
+
+
+FORMAT controls the output as in c printf. Interpreted sequences are:
+ 
+.SH OPTIONS
+.IP -ls 
+- list of files
+.IP --ls
+-la --- list of file all in long format
+.IP --/bin/ls 
+print string.
+.IP --/bin/ls 
+-la print only char
+.IP --%i
+takes integer value as integer value with decimal, hexadecimal or octal type.
+.IP --%d
+takes integer value as signed decimal integer i.e. it takes negative values along with positive values but values should be in decimal otherwise it will print garbage value.
+
+ARGUMENTS
+The first argument is assumed to be the  name
+of a file containing shell commands.  If shell is invoked in this fashion, $0 is set to the name of the file, and the positional parameters are set
+to the remaining arguments.  shell reads and executes commands from this file, then exits.  shell's exit status is the exit status of the last  command  executed in the script.  If no commands are executed, the exit status is 0.  An attempt is first made to open the file in the current directory, and, if no file is found, then the shell searches the directories in PATH for the script.
+
+.SH BUGS
+GNU coreutils online help: <http://www.gnu.org/software/coreutils/>
+Report printf translation bugs to <http://translationproject.org/team/>
+
+.SH AUTHOR
+Written by Maria Fernanda Mendez & Diego Orjuela.
