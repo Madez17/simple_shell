@@ -22,6 +22,7 @@ int _env(char **p)
 				write(1, environ[iterenv], lenght);
 				write(1, "\n", 1);
 			}
+			status = 0; 
 			return (1);
 		}
 	}

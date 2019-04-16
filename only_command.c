@@ -14,8 +14,9 @@
 
 void only_command(char *buffer, char **p, char *name_shell, int count_prompt)
 {
-	int trash;
+	int trash, res;
 	char *cpypath, *concat, *number_prompt;
+	pid_t pid;
 
 	trash = 1;
 
@@ -24,27 +25,30 @@ void only_command(char *buffer, char **p, char *name_shell, int count_prompt)
 	{
 		number_prompt = number_to_str(count_prompt);
 		not_command(name_shell, p[0], number_prompt);
+		status = 127;
+		free(number_prompt);
 	}
 	else
 	{
 		concat = execute_ok(cpypath, p, &trash);
-
 		if (trash == 0)
 		{
-			if (fork() == 0)
-			{
-				execve(concat, p, NULL);
-			}
-			free(cpypath);
-			free(concat);
+			pid = fork();
+                        if (pid == 0)
+                        {
+                                execve(concat, p, NULL);
+                        }
+                        pid = waitpid(pid, &res, 0);
+                        if (WIFEXITED(res))
+                                status = WEXITSTATUS(res);
+                        free(cpypath);
+                        free(concat);
 		}
 		else
 		{
-			if (execve(p[0], p, NULL) == -1)
-			{
-				number_prompt = number_to_str(count_prompt);
-				not_command(name_shell, p[0], number_prompt);
-			}
+			number_prompt = number_to_str(count_prompt);
+			not_command(name_shell, p[0], number_prompt);
+			status = 127;
 			free(cpypath);
 			free(number_prompt);
 		}

@@ -15,4 +15,5 @@ void execute_pathname(char **p)
 	{
 		execve(concat, p, NULL);
 	}
+	status = 0;
 }

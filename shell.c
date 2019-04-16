@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
 	int cont, own_comm, count_prompt;
 	(void)argc;
 
+	status = 0;
 	count_prompt = 0;
 	buffer = NULL;
 	signal(SIGINT, handle_sigint);

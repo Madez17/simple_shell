@@ -10,6 +10,7 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 
+int status; 
 extern char **environ;
 int _strcmp(char *s1, char *s2, int n);
 int _strlen(char *s);
