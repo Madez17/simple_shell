@@ -20,7 +20,7 @@ void only_command(char *buffer, char **p, char *name_shell, int count_prompt)
 	trash = 1;
 
 	cpypath = _found_path(buffer, p);
-	if(cpypath == NULL)
+	if (cpypath == NULL)
 	{
 		number_prompt = number_to_str(count_prompt);
 		not_command(name_shell, p[0], number_prompt);
@@ -40,7 +40,7 @@ void only_command(char *buffer, char **p, char *name_shell, int count_prompt)
 		}
 		else
 		{
-			if(execve(p[0], p, NULL) == -1)
+			if (execve(p[0], p, NULL) == -1)
 			{
 				number_prompt = number_to_str(count_prompt);
 				not_command(name_shell, p[0], number_prompt);
