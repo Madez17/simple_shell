@@ -20,22 +20,33 @@ void only_command(char *buffer, char **p, char *name_shell, int count_prompt)
 	trash = 1;
 
 	cpypath = _found_path(buffer, p);
-	concat = execute_ok(cpypath, p, &trash);
-
-	if (trash == 0)
-	{
-		if (fork() == 0)
-		{
-			execve(concat, p, NULL);
-		}
-		free(cpypath);
-		free(concat);
-	}
-	else
+	if(cpypath == NULL)
 	{
 		number_prompt = number_to_str(count_prompt);
 		not_command(name_shell, p[0], number_prompt);
-		free(cpypath);
-		free(number_prompt);
+	}
+	else
+	{
+		concat = execute_ok(cpypath, p, &trash);
+
+		if (trash == 0)
+		{
+			if (fork() == 0)
+			{
+				execve(concat, p, NULL);
+			}
+			free(cpypath);
+			free(concat);
+		}
+		else
+		{
+			if(execve(p[0], p, NULL) == -1)
+			{
+				number_prompt = number_to_str(count_prompt);
+				not_command(name_shell, p[0], number_prompt);
+			}
+			free(cpypath);
+			free(number_prompt);
+		}
 	}
 }
