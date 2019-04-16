@@ -15,17 +15,21 @@ int *status)
 	char *concat = p[0];
 	char *pathname = *p;
 	char *number_prompt;
-	int i;
+	int i, res;
+	pid_t pid;
 
 	for (i = 0; pathname[i] != '\0'; i++)
 	{
 		if (pathname[i] == '/')
 		{
-			if (fork() == 0)
-			{
-				execve(concat, p, NULL);
-			}
-			*status = 0;
+			pid = fork();
+                        if (pid == 0)
+                        {
+                                execve(concat, p, NULL);
+                        }
+                        pid = waitpid(pid, &res, 0);
+                        if (WIFEXITED(res))
+                                *status = WEXITSTATUS(res);
 			return;
 		}
 	}
