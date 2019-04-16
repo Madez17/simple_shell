@@ -23,6 +23,9 @@ char *_found_path(char *buffer, char **p)
 		}
 	}
 
+	if (environ[iterenv] == NULL)
+		return (NULL);
+
 	lenght = _strlen(environ[iterenv]);
 	cpyenv = malloc(sizeof(char) * lenght + 1);
 	if (cpyenv == NULL)
