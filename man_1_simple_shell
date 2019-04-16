@@ -1,9 +1,7 @@
 .\" This is the manpage of _simple_Shell
-.TH _Shell "15/04/19" "VI" "_simple_shell man page"
- 
+.TH _Shell "15/04/19" "VI" "_simple_shell man page" 
 .SH NAME
 _Simple_shell
- 
 .SH SYNOPSIS
 _Simple_shell [Option] [command | File]
 .SH COPYRIGHT
