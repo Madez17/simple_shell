@@ -17,7 +17,7 @@ void _exited(char **p, char *buffer)
 		{
 			free(buffer);
 			free(p);
-			exit(-1);
+			exit(127);
 		}
 	}
 }
