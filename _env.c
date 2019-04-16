@@ -4,10 +4,10 @@
  * _env - the function built-in that implement the command "env"
  * in the shell.
  * @p: storage double pointer of arguments.
- *
+ * @status: exit state of program.
  * Return: 1 if it's succces; 0 if is not.
  */
-int _env(char **p)
+int _env(char **p, int *status)
 {
 	int iterenv;
 	int lenght;
@@ -22,7 +22,7 @@ int _env(char **p)
 				write(1, environ[iterenv], lenght);
 				write(1, "\n", 1);
 			}
-			status = 0; 
+			*status = 0;
 			return (1);
 		}
 	}

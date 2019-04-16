@@ -3,11 +3,12 @@
 /**
  * _prompt - get arguments of standar input.
  * @buffer: storage string.
+ * @status: exit state of program.
  *
  * Return: return of the strorage string.
  */
 
-char *_prompt(char *buffer)
+char *_prompt(char *buffer, int *status)
 {
 	ssize_t characters;
 	size_t sizebuf = 120;
@@ -18,7 +19,7 @@ char *_prompt(char *buffer)
 	{
 		/*write(1, "\n", 1);*/
 		free(buffer);
-		exit(0);
+		exit(*status);
 	}
 	return (buffer);
 

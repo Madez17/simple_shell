@@ -12,7 +12,7 @@
 int main(int argc, char *argv[])
 {
 	char *buffer, **p;
-	int cont, own_comm, count_prompt;
+	int cont, own_comm, count_prompt, status;
 	(void)argc;
 
 	status = 0;
@@ -22,25 +22,25 @@ int main(int argc, char *argv[])
 	while (1)
 	{
 		count_prompt++;
-		buffer = _prompt(buffer);
+		buffer = _prompt(buffer, &status);
 		p = _store_args(buffer, &cont);
 		p[0] = strtok(buffer, " \n\t");
 		/*0-OPCION ACCESO: _________________*/
 		if (p[0] != NULL)/* 1-OWNER FUNCTIONS ------------------------------------*/
 		{
 			own_comm = 0;
-			_exited(p, buffer);
-			own_comm = _env(p);
+			_exited(p, buffer, &status);
+			own_comm = _env(p, &status);
 			if (own_comm == 0)/* 2-SYSTEM FUNCTIONS ---------------------*/
 			{
 				p = assign_args(p, cont);
 				if (access(p[0], F_OK) == 0) /*2.1- OPCION ACCESO RUTA: /bin/ls*/
 				{
-					execute_pathname(p);
+					execute_pathname(p, argv[0], count_prompt, &status);
 				}
 				else /* 2.2- OPCION ACCESO ONLY COMMAND: ls -----------------*/
 				{
-					only_command(buffer, p, argv[0], count_prompt);
+					only_command(buffer, p, argv[0], count_prompt, &status);
 				}
 				wait(NULL);
 			}

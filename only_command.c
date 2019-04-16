@@ -8,11 +8,13 @@
  * @p: arguments of standar input.
  * @name_shell: first argument of main.
  * @count_prompt: amount proccess of getline.
+ * @status: exit state of program.
  *
  * Return: nothing.
  */
 
-void only_command(char *buffer, char **p, char *name_shell, int count_prompt)
+void only_command(char *buffer, char **p, char *name_shell, int count_prompt,
+int *status)
 {
 	int trash, res;
 	char *cpypath, *concat, *number_prompt;
@@ -25,7 +27,7 @@ void only_command(char *buffer, char **p, char *name_shell, int count_prompt)
 	{
 		number_prompt = number_to_str(count_prompt);
 		not_command(name_shell, p[0], number_prompt);
-		status = 127;
+		*status = 127;
 		free(number_prompt);
 	}
 	else
@@ -34,21 +36,21 @@ void only_command(char *buffer, char **p, char *name_shell, int count_prompt)
 		if (trash == 0)
 		{
 			pid = fork();
-                        if (pid == 0)
-                        {
-                                execve(concat, p, NULL);
-                        }
-                        pid = waitpid(pid, &res, 0);
-                        if (WIFEXITED(res))
-                                status = WEXITSTATUS(res);
-                        free(cpypath);
-                        free(concat);
+			if (pid == 0)
+			{
+				execve(concat, p, NULL);
+			}
+			pid = waitpid(pid, &res, 0);
+			if (WIFEXITED(res))
+				*status = WEXITSTATUS(res);
+			free(cpypath);
+			free(concat);
 		}
 		else
 		{
 			number_prompt = number_to_str(count_prompt);
 			not_command(name_shell, p[0], number_prompt);
-			status = 127;
+			*status = 127;
 			free(cpypath);
 			free(number_prompt);
 		}
