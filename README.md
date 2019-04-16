@@ -28,13 +28,11 @@ File | Description
 `sig.c` | prevents the program from ending.
 `exit.c` | the function built-in that implement the command "exit".
 `found_path.c` | found PATH in the variable global enviroment.
-`not_command.c` | print the message of error if the first argument
- * was not executable.
+`not_command.c` | print the message of error if the first argument was not executable.
 `number_to_str.c` | convert number to string.
- * @num: the number to covert.
-`only_command` | check the command if it's execute or not in the PATH.* If it's succces, the command is execute in the children procces; if not * show error.
-`assign_args.c` | assing the rest arguments to the double * pointer.
-`_env.c` | the function built-in that implement the command "env" * in the shell.
+`only_command` | check the command if it's execute or not in the PATH.If it's succces, the command is execute in the children procces; if not show error.
+`assign_args.c` | assing the rest arguments to the double pointer.
+`_env.c` | the function built-in that implement the command "env" in the shell.
 `execute_ok.c` | check the command if it's execute or not in te PATH.
 `execute_pathname.c` | execute when the command is for path.
 `shell.c` | main function
