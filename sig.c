@@ -10,6 +10,6 @@
 void handle_sigint(int sing)
 {
 	(void) sing;
-	write(1, "\n", 2);
+	write(1, "\n#cisfun$ ", 11);
 	fflush(stdout);
 }

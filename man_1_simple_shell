@@ -1,52 +1,61 @@
 .\" This is the manpage of _simple_Shell
-.TH _Shell "15/04/19" "VI" "_simple_shell man page"
- 
+.TH _Shell "15/04/19" "VI" "_simple_shell man page" 
 .SH NAME
 _Simple_shell
- 
 .SH SYNOPSIS
 _Simple_shell [Option] [command | File]
 .SH COPYRIGHT
 _Simple_shell is copyright (c)
 .SH DESCRIPTION
-
-
 The Simple shell, a new version(A command-line interface is an operating system shell that uses alphanumeric characters typed on a keyboard to provide instructions and data to the operating system, interactively).
 
-This new version seeks to familiarize the user with the new commands and their call syntax, providing certain advantages to screen readers.
 
-AVAILABILITY
-simple_shell  is  available  from  the following link: ---------
+.SH OVERVIEW
+The shell is a command that reads lines from the terminal, interprets them, and generally executes other commands.
+It is the program that is running when a user logs into the system
+The shell implements a language that has flow control in addition to data storage.  It incorporates many features to aid inter-
+active use and has the advantage
+that the interpretative language
+is common to both interactive and non-interactive use (shell
+scripts).  That is, commands can be typed directly to the running
+shell or can be put into a file and the file can be executed
+directly by the shell.
 
-OPTIONS
+.SH INVOCATION
+If no args are present and if the standard input of the shell is
+connected to a terminal, the shell is considered an interactive
+shell.  An interactive shell generally prompts before each command
+and handles programming and command errors differently.  When first starting, the shell inspects argu-
+ment 0, and if it begins with a dash ‘      ’, the shell is also con-
+sidered a login shell.
 
-All  of  the  single-character  shell  options  documented  in the description of the set builtin command can be used as options when the shell is invoked.  In addition, bash interprets the following options when it is invoked:
+
+If command line arguments besides the options have been specified,
+then the shell treats the first argument as the name of a file
+from which to read commands (a shell script), and the remaining
+arguments are set as the positional parameters of the shell.
+
+.SH EXIT STATUS
+The exit status of an executed command is the value returned by the  system call or equivalent function. Exit statuses fall between 0 and 255, though, as explained below, the shell may use values above 125 specially. Exit statuses from shell builtins and compound commands are also limited to this range. Under certain circumstances, the shell will use special values to indicate specific failure modes.
 
 
-FORMAT controls the output as in c printf. Interpreted sequences are:
- 
-.SH OPTIONS
-.IP -ls 
-- list of files
-.IP --ls
--la --- list of file all in long format
-.IP --/bin/ls 
-print string.
-.IP --/bin/ls 
--la print only char
-.IP --%i
-takes integer value as integer value with decimal, hexadecimal or octal type.
-.IP --%d
-takes integer value as signed decimal integer i.e. it takes negative values along with positive values but values should be in decimal otherwise it will print garbage value.
+.SH SIGNALS
+When shell is interactive, in the absence of any traps, it ignores SIGINT is caught and handled (so that the wait builtin is interruptible).
+
+Non-builtin commands run by bash have signal handlers set to the values inherited by the shell from its parent. When job control is not in effect, asynchronous commands ignore SIGIN in addition to these inherited handlers.
+
+.SH AVAILABILITY
+simple_shell  is  available  from  the following link: https://github.com/Madez17/simple_shell
 
 ARGUMENTS
 The first argument is assumed to be the  name
 of a file containing shell commands.  If shell is invoked in this fashion, $0 is set to the name of the file, and the positional parameters are set
-to the remaining arguments.  shell reads and executes commands from this file, then exits.  shell's exit status is the exit status of the last  command  executed in the script.  If no commands are executed, the exit status is 0.  An attempt is first made to open the file in the current directory, and, if no file is found, then the shell searches the directories in PATH for the script.
+to the remaining arguments.  shell reads and executes commands from this file, then exits.  shell's exit status is the exit status of the last  command  executed in the script.  If no commands are executed, the exit status is 0.  An attempt is first made to open the file in the current directory, and, if no file is found, then the shell searches the directories in PATH.
 
 .SH BUGS
-GNU coreutils online help: <http://www.gnu.org/software/coreutils/>
-Report printf translation bugs to <http://translationproject.org/team/>
+If you find bugs in this new version of shell let us know.
+DiegoOrejuela <dfrodriguezor@gmail.com> Madez17 <781@holbertonschool.com>
+
 
 .SH AUTHOR
-Written by Maria Fernanda Mendez & Diego Orjuela.
+Written by Maria Fernanda Mendez & Diego Rodriguez Orejuela.
