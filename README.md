@@ -1,4 +1,4 @@
-# Simple_shell proyect
+# Simple_shell
 `(Simple_shell)`
 A project that consist in the recreation of shell.
 ---
